@@ -1,0 +1,75 @@
+﻿@model Department.Models.RegisterViewModel
+@using Department.Models
+@{
+    ViewBag.Title = "Регистрация";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <h4>Создание новой учетной записи.</h4>
+
+    <div class="form-horizontal">
+        @*@Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+            </div>
+        </div>*@
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="editor-label"><b>Роль</b></div>
+    
+            @{
+                List<SelectListItem> list = new List<SelectListItem>();//Список значений для DDL
+
+                list.Add(new SelectListItem() { Text = "admin" });//Заполняем его
+                list.Add(new SelectListItem() { Text = "teacher" });//Заполняем его
+                list.Add(new SelectListItem() { Text = "user" });//Заполняем его
+
+            }
+            @Html.DropDownList("myDDL", list)
+     
+
+
+
+            @*<div class="editor-label"><b>Производители</b></div>
+            @foreach (RegistrationRole c in ViewBag.Roles)
+            {
+                <input type="checkbox" name="selectedRoles" value="@c.Id" />@c.Name
+                <br />
+            }*@
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" class="btn btn-default" value="Регистрация" />
+                </div>
+            </div>
+
+        </div>
+
+
+        }
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")}
+

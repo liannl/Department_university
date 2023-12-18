@@ -1,0 +1,39 @@
+﻿@model Department.Models.Progress
+
+@{
+    ViewBag.Title = "Успеваемость";
+}
+
+<h2>Редактировать успеваемость</h2>
+<i><font size="3" color="#a30000">@ViewBag.Message</font></i>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+@*< class="form-horizontal">*@
+    @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="editor-label"><b>Студент</b></div>
+    <div class="editor-field">
+        <h3>@ViewBag.Student</h3>
+    </div>
+    <div class="editor-label"><b>Предмет</b></div>
+    <div class="editor-field">
+        <h3>@ViewBag.Subject</h3>
+    </div>
+    <div class="editor-label"><b>Оценка</b></div>
+    <div class="">
+            @Html.EditorFor(model => model.Mark, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Mark, "", new { @class = "text-danger" })
+        </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Назад", "Progress")
+</div>

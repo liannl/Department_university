@@ -1,0 +1,48 @@
+﻿@model Department.Models.Teacher
+@using Department.Models
+
+@{
+    ViewBag.Title = "Добавить преподавателя";
+}
+
+<i><font size="3" color="#a30000">@ViewBag.Message</font></i>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Добавить преподавателя</h4>
+    <hr />
+    <div class="editor-label"><b>ФИО</b></div>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="">
+        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+    </div>
+
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.HireDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.HireDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HireDate, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    <div class="editor-label"><b>Предмет</b></div>
+    @foreach (Subject c in ViewBag.Subjects)
+    {
+        <input type="checkbox" name="selectedSubjects" value="@c.Id" />@c.Name <br />
+    }
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Добавить" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Назад", "Teacher")
+</div>

@@ -1,0 +1,47 @@
+﻿@model Department.Models.Progress
+
+@{
+    ViewBag.Title = "Добавить оценку";
+}
+
+<h2>Добавить оценку</h2>
+<i><font size="3" color="#a30000">@ViewBag.Message</font size="3" color="#a30000"></i>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <hr />
+
+    <div class="editor-label"><b>Студент</b></div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.StudentId, ViewBag.Students as SelectList, string.Empty)
+
+    </div>
+
+    <div class="editor-label"><b>Предмет</b></div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.SubjectId, ViewBag.Subjects as SelectList, string.Empty)
+
+    </div>
+
+    
+        <div class="editor-label"><b>Оценка</b></div>
+        <div class="">
+            @Html.EditorFor(model => model.Mark, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Mark, "", new { @class = "text-danger" })
+        </div>
+    
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Добавить" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Назад", "Progress")
+</div>

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Department.Models.Year>
+
+@{
+    ViewBag.Title = "Курсы";
+}
+
+<h2>Курсы</h2>
+<i><font size="3" color="#a30000">@ViewBag.Message</font></i>
+<p>
+    @Html.ActionLink("Добавить курс", "CreateYear")
+</p>
+<table class="table">
+    <tr>
+        <th>
+           Номер
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Изменить", "EditYear", new { id = item.Id }) |
+                @Html.ActionLink("Удалить", "DeleteYear", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div>
+    @Html.ActionLink("Назад", "Management")
+</div>
+

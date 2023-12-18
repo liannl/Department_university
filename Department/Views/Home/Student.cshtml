@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Department.Models.Student>
+@using Department.Models 
+
+@{
+    ViewBag.Title = "Студенты";
+}
+
+<h2>Студенты</h2>
+
+<p>
+    @Html.ActionLink("Добавить студента", "CreateStudent")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            ФИО
+        </th>
+        <th>
+            Номер студенческого билета
+        </th>
+        <th>
+            Группа
+        </th>
+        <th>
+            Курс
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StudentCard)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Group.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Year.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Редактировать", "EditStudent", new { id=item.Id }) 
+        </td>
+    </tr>
+}
+
+</table>

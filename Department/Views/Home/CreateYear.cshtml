@@ -1,0 +1,40 @@
+﻿@model Department.Models.Year
+@using Department.Models
+
+@{
+    ViewBag.Title = "Добавить курс";
+}
+
+<i><font size="3" color="#a30000">@ViewBag.Message</font></i>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Добавить курс</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="editor-label"><b>Номер</b></div>
+    <div class="">
+        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+    </div>
+
+
+    <div class="editor-label"><b>Студенты</b></div>
+    @foreach (Student c in ViewBag.Students)
+    {
+        <input type="checkbox" name="selectedStudents" value="@c.Id" />@c.Name <br />
+    }
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Добавить" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Назад", "Year")
+</div>

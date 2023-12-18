@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Department.Models.Teacher>
+
+@{
+    ViewBag.Title = "Преподаватели";
+}
+
+<h2>Преподаватели</h2>
+<i><font size="3" color="#a30000">@ViewBag.Message</font></i>
+<p>
+    @Html.ActionLink("Добавить преподавателя", "CreateTeacher")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            ФИО
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.HireDate)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    @*<td>
+        @Html.DisplayFor(modelItem => item.HireDate)
+    </td>*@
+    <td>
+        @Html.ActionLink("Редактировать", "EditTeacher", new { id = item.Id }) 
+    </td>
+</tr>
+}
+
+</table>
+<div>
+    @Html.ActionLink("Назад", "Management")
+</div>

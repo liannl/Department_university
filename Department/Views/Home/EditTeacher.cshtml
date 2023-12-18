@@ -1,0 +1,39 @@
+﻿@model Department.Models.Teacher
+@using Department.Models
+
+@{
+    ViewBag.Title = "Редактирование преподавателя";
+}
+
+<h4>Редактирование преподавателя</h4>
+<i><font size="3" color="#a30000">@ViewBag.Message</font></i>
+@using (Html.BeginForm())
+{
+<div>
+    <fieldset>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label"><b>ФИО</b></div>
+        <div class="">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="editor-label"><b>Предметы</b></div>
+        @foreach (Subject c in ViewBag.Subjects)
+        {
+            <input type="checkbox" name="selectedSubjects" value="@c.Id"
+                   @(Model.Subjects.Contains(c) ? "checked=\"checked\"" : "") />@c.Name <br />
+            }
+
+        <p>
+            <input type="submit" value="Сохранить" />
+        </p>
+    </fieldset>
+    </div>
+ }
+<div>
+    @Html.ActionLink("Назад", "Teacher")
+</div>
+

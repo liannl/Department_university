@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Department.Models.Group>
+
+@{
+    ViewBag.Title = "Группы";
+}
+
+<h2>Group</h2>
+<i><font size="3" color="#a30000">@ViewBag.Message</font></i>
+<p>
+    @Html.ActionLink("Добавить группу", "CreateGroup")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Номер
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditGroup", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "DeleteGroup", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+<div>
+    @Html.ActionLink("Назад", "Management")
+</div>

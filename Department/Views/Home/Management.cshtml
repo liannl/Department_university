@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Department.Models.Progress>
+
+@{
+    ViewBag.Title = "Управление";
+}
+
+<h2>Управление</h2>
+<i><font size="3" color="#a30000">@ViewBag.Message</font></i>
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Группы", "Group/Group")
+        </th>
+        <th>
+            @Html.ActionLink("Курсы", "Year")
+        </th>
+        <th>
+            @Html.ActionLink("Преподаватели", "Teacher")
+        </th>
+        <th>
+            @Html.ActionLink("Предметы", "Subject")
+        </th>
+        <th>
+            @Html.ActionLink("Студенты", "Student")
+        </th>
+        <th>
+            @Html.ActionLink("Добавить пользователя", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        </th>
+        <th></th>
+    </tr>
+
+</table>
